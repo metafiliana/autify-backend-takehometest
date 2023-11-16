@@ -19,3 +19,13 @@
 
 # Go workspace file
 go.work
+
+# IDE generated files
+*.vscode
+*.DS_Store
+
+# generated files
+/assets
+*.html
+autify-backend-takehometest
+fetch
