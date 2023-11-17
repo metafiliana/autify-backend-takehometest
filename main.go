@@ -153,7 +153,9 @@ func modifyContent(baseUrl, htmlContent, urlName string) (string, int, int) {
 				modifyContentStyleLink(token, baseUrl, urlName)
 			} else if token.Data == "image" || token.Data == "svg" || token.Data == "img" {
 				numImages++
-				modifyContentImage(token, baseUrl, urlName)
+				modifyContentFile(token, baseUrl, urlName)
+			} else if token.Data == "script" {
+				modifyContentFile(token, baseUrl, urlName)
 			}
 
 			modifiedContent.WriteString(token.String())
@@ -181,7 +183,7 @@ func modifyContentStyleLink(token html.Token, baseUrl, urlName string) {
 	}
 }
 
-func modifyContentImage(token html.Token, baseUrl, urlName string) {
+func modifyContentFile(token html.Token, baseUrl, urlName string) {
 	// iterate through image related tag
 	keySrc, keySrcData := 0, 0
 	isSrc, isSrcData := false, false
